@@ -18,8 +18,18 @@ public class GatewayConfigurationProperties {
      * Routes for the gateway to map to.
      */
     private List<Route> routes;
+    /**
+     * The host of the microservices.
+     */
     private String serviceHost;
+    /**
+     * The path prefix to be used with the rewrite path filter.
+     */
     private String pathPrefix;
+    /**
+     * The front-end portal origins to allows cors for.
+     */
+    private List<String> portalOrigins;
 
     @Getter
     @Setter
