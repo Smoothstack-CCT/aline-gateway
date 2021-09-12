@@ -49,6 +49,9 @@ public class GatewayConfiguration {
     @Bean
     public CorsWebFilter corsConfiguration() {
         final CorsConfiguration corsConfiguration = new CorsConfiguration();
+
+        log.info("Allowing origins: {}", String.join(", ", gatewayProperties.getPortalOrigins()));
+
         corsConfiguration.setAllowedOrigins(gatewayProperties.getPortalOrigins());
         corsConfiguration.setAllowedMethods(Collections.singletonList(CorsConfiguration.ALL));
         corsConfiguration.setAllowedHeaders(Arrays.asList(
