@@ -9,6 +9,6 @@ aws cloudformation deploy --template deploy-ms.yml \
         AppEnv=dev \
         AppName=alinefinancial \
         ServiceName=$service_name \
-        ServicePort=$service_port
-        CommitHash=$commit_hash
+        ServicePort=$service_port \
+        CommitHash=$commit_hash \
     --capabilities CAPABILITY_NAMED_IAM
