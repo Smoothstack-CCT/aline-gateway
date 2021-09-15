@@ -69,8 +69,19 @@ pipeline {
                 echo "Fetching CloudFormation template 'deploy-stack.yml'..."
                 sh "wget https://raw.githubusercontent.com/${ORGANIZATION}/${PROJECT_NAME}/${APP_ENV}/deploy-stack.yml"
                 echo "Deploying ${SERVICE_NAME}..."
-                sh "aws cloudformation deploy --stack-name ${SERVICE_NAME}-stack --template-file deploy-stack.yml --parameter-overrides AppEnv=${APP_ENV} AppName=${APP_NAME} ServiceName=${SERVICE_NAME} ServicePort=${SERVICE_PORT} CommitHash=${COMMIT_HASH} --capabilities CAPABILITY_NAMED_IAM"
 
+                sh '''
+                    aws cloudformation deploy 
+                    --stack-name ${SERVICE_NAME}-stack 
+                    --template-file deploy-stack.yml 
+                    --parameter-overrides 
+                        AppEnv=${APP_ENV} 
+                        AppName=${APP_NAME} 
+                        ServiceName=${SERVICE_NAME} 
+                        ServicePort=${SERVICE_PORT} 
+                        CommitHash=${COMMIT_HASH} 
+                    --capabilities CAPABILITY_NAMED_IAM
+                '''
             }
 
         }
