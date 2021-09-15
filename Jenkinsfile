@@ -4,7 +4,7 @@ pipeline {
 
     agent any
     environment {
-        COMMIT_HASH = "${sh(script: 'git rev-parse --short HEAD', returnStdout: true).trime()}"
+        COMMIT_HASH = "${sh(script: 'git rev-parse --short HEAD', returnStdout: true).trim()}"
         AWS_ID = credentials('AWS_ID')
         SERVICE_NAME = 'gatway'
         SERVICE_PORT = 8080
