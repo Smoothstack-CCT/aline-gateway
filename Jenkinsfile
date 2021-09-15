@@ -81,6 +81,7 @@ pipeline {
                         ServicePort=${SERVICE_PORT} \
                         CommitHash=${COMMIT_HASH} \
                     --capabilities CAPABILITY_NAMED_IAM
+                    --no-fail-on-empty-changeset
                 '''
             }
 
