@@ -2,7 +2,7 @@
 service_name=gateway
 
 aws cloudformation deploy --template setup-ms-stack.yml \
-    --stack-name $service_name-stack \
+    --stack-name $service_name-setup-stack \
     --parameter-overrides \
         AppEnv=dev \
         AppName=alinefinancial \
