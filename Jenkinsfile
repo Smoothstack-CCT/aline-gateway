@@ -6,7 +6,7 @@ pipeline {
     environment {
         COMMIT_HASH = "${sh(script: 'git rev-parse --short HEAD', returnStdout: true).trim()}"
         AWS_ID = credentials('AWS_ID')
-        SERVICE_NAME = 'gatway'
+        SERVICE_NAME = 'gateway'
         SERVICE_PORT = 8080
         REGION = 'us-east-2'
         APP_NAME = 'alinefinancial'
@@ -43,7 +43,7 @@ pipeline {
                 echo "Fetching CloudFormation template 'setup-stack.yml'..."
                 sh "wget https://raw.githubusercontent.com/${ORGANIZATION}/${PROJECT_NAME}/${APP_ENV}/setup-stack.yml"
                 echo "Deploying 'Setup Stack'..."
-                sh "aws cloudformation deploy --stack-name ${SERVICE_NAME}-setup-stack --parameter-overrides AppEnv=${APP_ENV} AppName=${APP_NAME} ServiceName=${SERVICE_NAME} --capabilities CAPABILITY_NAMED_IAM"
+                sh "aws cloudformation deploy --stack-name ${SERVICE_NAME}-setup-stack --template-file setup-stack.yml --parameter-overrides AppEnv=${APP_ENV} AppName=${APP_NAME} ServiceName=${SERVICE_NAME} --capabilities CAPABILITY_NAMED_IAM"
             }
 
         }
@@ -69,7 +69,7 @@ pipeline {
                 echo "Fetching CloudFormation template 'deploy-stack.yml'..."
                 sh "wget https://raw.githubusercontent.com/${ORGANIZATION}/${PROJECT_NAME}/${APP_ENV}/deploy-stack.yml"
                 echo "Deploying ${SERVICE_NAME}..."
-                sh "aws cloudformation deploy --stack-name ${SERVICE_NAME}-stack --parameter-overrides AppEnv=${APP_ENV} AppName=${APP_NAME} ServiceName=${SERVICE_NAME} ServicePort=${SERVICE_PORT} CommitHash=${COMMIT_HASH} --capabilities CAPABILITY_NAMED_IAM"
+                sh "aws cloudformation deploy --stack-name ${SERVICE_NAME}-stack --template-file deploy-stack.yml --parameter-overrides AppEnv=${APP_ENV} AppName=${APP_NAME} ServiceName=${SERVICE_NAME} ServicePort=${SERVICE_PORT} CommitHash=${COMMIT_HASH} --capabilities CAPABILITY_NAMED_IAM"
 
             }
 
