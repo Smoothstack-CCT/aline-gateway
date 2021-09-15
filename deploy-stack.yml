@@ -65,6 +65,12 @@ Resources:
           PortMappings:
             - ContainerPort: !Ref ServicePort
           Environment:
+            - Name: PORTAL_LANDING
+              Value: http://alinefinancial.com
+            - Name: PORTAL_DASHBOARD
+              Value: http://dashboard.alinefinancial.com
+            - Name: PORTAL_ADMIN
+              Value: http://admin.alinefinancial.com
             - Name: APP_PORT
               Value: !Ref ServicePort
             - Name: APP_SERVICE_HOST
