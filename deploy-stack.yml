@@ -61,10 +61,7 @@ Resources:
       TaskRoleArn: !Sub '{{resolve:secretsmanager:${AppName}/${AppEnv}/secrets/resources:SecretString:ContainerExecutionRole}}'
       ContainerDefinitions:
         - Name: !Sub ${AppName}-${ServiceName}
-          Image: !Join 
-            - ':'
-            - - !Sub '{{resolve:secretsmanager:${AppName}/${AppEnv}/service/${ServiceName}:SecretString:URI}}' 
-              - !Ref CommitHash
+          Image: !Sub '${AWS::AccountId}.dkr.ecr.${AWS::Region}.amazonaws.com/${AppName}/${AppEnv}/${ServiceName}:${CommitHash}'
           PortMappings:
             - ContainerPort: !Ref ServicePort
           Environment:
