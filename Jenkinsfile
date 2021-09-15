@@ -80,7 +80,7 @@ pipeline {
                         ServiceName=${SERVICE_NAME} \
                         ServicePort=${SERVICE_PORT} \
                         CommitHash=${COMMIT_HASH} \
-                    --capabilities CAPABILITY_NAMED_IAM \
+                    --capabilities CAPABILITY_NAMED_IAM
                 '''
             }
 
