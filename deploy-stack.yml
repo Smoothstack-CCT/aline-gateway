@@ -42,7 +42,7 @@ Resources:
           SecurityGroups:
             - !Sub '{{resolve:secretsmanager:${AppName}/${AppEnv}/secrets/resources:SecretString:SecurityGroup}}'
       LoadBalancers:
-        - ContainerName: !Sub '${AppName}-${AppEnv}-${ServiceName}'
+        - ContainerName: !Sub '${AppName}/${AppEnv}/${ServiceName}'
           ContainerPort: !Ref ServicePort
           TargetGroupArn: !Ref ServiceTargetGroup
 
