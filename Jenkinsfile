@@ -71,16 +71,16 @@ pipeline {
                 echo "Deploying ${SERVICE_NAME}..."
 
                 sh '''
-                    aws cloudformation deploy 
-                    --stack-name ${SERVICE_NAME}-stack 
-                    --template-file deploy-stack.yml 
-                    --parameter-overrides 
-                        AppEnv=${APP_ENV} 
-                        AppName=${APP_NAME} 
-                        ServiceName=${SERVICE_NAME} 
-                        ServicePort=${SERVICE_PORT} 
-                        CommitHash=${COMMIT_HASH} 
-                    --capabilities CAPABILITY_NAMED_IAM
+                    aws cloudformation deploy \
+                    --stack-name ${SERVICE_NAME}-stack \
+                    --template-file deploy-stack.yml \
+                    --parameter-overrides \
+                        AppEnv=${APP_ENV} \
+                        AppName=${APP_NAME} \
+                        ServiceName=${SERVICE_NAME} \
+                        ServicePort=${SERVICE_PORT} \
+                        CommitHash=${COMMIT_HASH} \
+                    --capabilities CAPABILITY_NAMED_IAM \
                 '''
             }
 
