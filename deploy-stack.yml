@@ -84,6 +84,7 @@ Resources:
               awslogs-region: !Ref AWS::Region
               awslogs-stream-prefix: !Sub ${ServiceName}-${AppEnv}
               awslogs-create-group: 'true'
+
   # The TargetGroup for the MicroService
   ServiceTargetGroup: 
     Type: AWS::ElasticLoadBalancingV2::TargetGroup
@@ -110,4 +111,18 @@ Resources:
           TargetGroupArn: !Ref ServiceTargetGroup
       Port: !Ref ServicePort
       Protocol: HTTP
+
+  # Redirect port 80 to port 8080
+  ApiListenerRule:
+    Type: AWS::ElasticLoadBalancingV2::ListenerRule
+    Properties:
+      ListenerArn: !Ref ApiListener
+      Actions:
+        - Type: redirect
+      Priority: 1
+      Conditions:
+        - Field: path-pattern
+          Values:
+            - HTTP://#{host}:8080/#{path}?#{query}
+          
 
