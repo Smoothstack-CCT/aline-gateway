@@ -33,6 +33,8 @@ public class GatewayConfiguration {
         final String pathPrefix = gatewayProperties.getPathPrefix();
         final String serviceHost = gatewayProperties.getServiceHost();
 
+        log.info("Routing requests to {}", serviceHost);
+
         final Function<GatewayFilterSpec, UriSpec> rewritePath = r -> r.rewritePath(pathPrefix + "/(?<segment>.*)", "/${segment}");
 
         gatewayProperties.getRoutes().forEach(route -> routes.route(route.getId(),

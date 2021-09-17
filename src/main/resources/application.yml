@@ -7,7 +7,7 @@ spring:
 
 app:
   gateway:
-    service-host: ${APP_SERVICE_HOST}
+    service-host: "http://${APP_SERVICE_HOST}"
     path-prefix: "/api"
     routes:
       - id: "user"
