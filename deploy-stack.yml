@@ -112,17 +112,21 @@ Resources:
       Port: !Ref ServicePort
       Protocol: HTTP
 
-  # Redirect port 80 to port 8080
-  ApiListenerRule:
-    Type: AWS::ElasticLoadBalancingV2::ListenerRule
+  # ApiListener 2
+  ApiListener2:
+    Type: AWS::ElasticLoadBalancingV2::Listener
     Properties:
-      ListenerArn: !Ref ApiListener
-      Actions:
+      LoadBalancerArn: !Sub '{{resolve:secretsmanager:${AppName}/${AppEnv}/secrets/resources:SecretString:GatewayALB}}'
+      DefaultActions:
         - Type: redirect
-      Priority: 1
-      Conditions:
-        - Field: path-pattern
-          Values:
-            - HTTP://#{host}:8080/#{path}?#{query}
+          RedirectConfig:
+            Protocol: HTTP
+            StatusCode: 'HTTP_301'
+            Port: !Ref ServicePort
+            Host: '#{host}'
+            Path: "/#{path}"
+            Query: "#{query}"
+      Port: 90
+      Protocol: HTTP
           
 
