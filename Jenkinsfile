@@ -99,4 +99,15 @@ pipeline {
 
     }
 
+    post {
+
+        always {
+
+            sh "mvn clean"
+            sh "docker rmi ${APP_NAME}/${APP_ENV}/${SERVICE_NAME}"
+
+        }
+
+    }
+
 }
