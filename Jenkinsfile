@@ -104,7 +104,7 @@ pipeline {
         always {
 
             sh "mvn clean"
-            sh "docker rmi ${APP_NAME}/${APP_ENV}/${SERVICE_NAME}"
+            sh "docker image rm ${AWS_ID}.dkr.ecr.${REGION}.amazonaws.com/${APP_NAME}/${APP_ENV}/${SERVICE_NAME}:${COMMIT_HASH}"
 
         }
 
