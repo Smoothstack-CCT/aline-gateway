@@ -1,7 +1,6 @@
 // Gateway Server Pipeline
 
 pipeline {
-
     agent any
     environment {
         COMMIT_HASH = "${sh(script: 'git rev-parse --short HEAD', returnStdout: true).trim()}"
@@ -73,9 +72,7 @@ pipeline {
         }
 
         stage("Deploy") {
-
             steps {
-
                 echo "Fetching CloudFormation template 'deploy-stack.yml'..."
                 sh "wget https://raw.githubusercontent.com/${ORGANIZATION}/${PROJECT_NAME}/${APP_ENV}/deploy-stack.yml"
                 echo "Deploying ${SERVICE_NAME}..."
@@ -94,21 +91,16 @@ pipeline {
                     --no-fail-on-empty-changeset
                 '''
             }
-
         }
 
     }
 
     post {
-
         always {
-
             sh "mvn clean"
             sh "docker image rm ${APP_NAME}/${APP_ENV}/${SERVICE_NAME}:${COMMIT_HASH}"
             sh "docker image rm ${AWS_ID}.dkr.ecr.${REGION}.amazonaws.com/${APP_NAME}/${APP_ENV}/${SERVICE_NAME}:${COMMIT_HASH}"
-
         }
-
     }
 
 }
