@@ -102,5 +102,4 @@ pipeline {
             sh "docker image rm ${AWS_ID}.dkr.ecr.${REGION}.amazonaws.com/${APP_NAME}/${APP_ENV}/${SERVICE_NAME}:${COMMIT_HASH}"
         }
     }
-
 }
