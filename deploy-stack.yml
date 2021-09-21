@@ -136,7 +136,7 @@ Resources:
       LoadBalancerArn: !Sub '{{resolve:secretsmanager:${AppName}/${AppEnv}/secrets/resources:SecretString:GatewayALB}}'
       DefaultActions:
         - Type: forward
-            TargetGroupArn: !Ref ServiceTargetGroup
+          TargetGroupArn: !Ref ServiceTargetGroup
       Certificates:
         - CertificateArn: !Sub '{{resolve:secretsmanager:${AppName}/${AppEnv}/secrets/resources:SecretString:SSLCertificate}}'
       Port: 443
