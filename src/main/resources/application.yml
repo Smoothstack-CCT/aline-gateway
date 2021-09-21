@@ -4,10 +4,15 @@ server:
 spring:
   application:
     name: "api-gateway"
+  cloud:
+    gateway:
+      httpclient:
+        ssl:
+          use-insecure-trust-manager: true
 
 app:
   gateway:
-    service-host: "https://${APP_SERVICE_HOST}"
+    service-host: "http://${APP_SERVICE_HOST}"
     path-prefix: "/api"
     routes:
       - id: "user"
