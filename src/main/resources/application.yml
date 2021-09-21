@@ -1,5 +1,7 @@
 server:
   port: ${APP_PORT}
+  ssl:
+    enabled: true
 
 spring:
   application:
