@@ -128,5 +128,19 @@ Resources:
             Query: "#{query}"
       Port: 80
       Protocol: HTTP
+
+  # SSL Listener
+  SSLListener:
+    Type: AWS::ElasticLoadBalancingV2::Listener
+    Properties:
+      LoadBalancerArn: !Sub '{{resolve:secretsmanager:${AppName}/${AppEnv}/secrets/resources:SecretString:GatewayALB}}'
+      DefaultActions:
+        - Type: forward
+            TargetGroupArn: !Ref ServiceTargetGroup
+      Certificates:
+        - CertificateArn: !Sub '{{resolve:secretsmanager:${AppName}/${AppEnv}/secrets/resources:SecretString:SSLCertificate}}'
+      Port: 443
+      Protocol: HTTPS
+      SslPolicy: ELBSecurityPolicy-2016-08
           
 
