@@ -36,6 +36,13 @@ app:
           - "@/accounts"
           - "@/accounts/{segment}"
           - "@/members/{segment}/accounts"
+      - id: "transaction"
+        port: 8073
+        paths:
+          - "@/transactions"
+          - "@/transactions/{segment}"
+          - "@/members/{segment}/transactions"
+          - "@/accounts/{segment}/transactions"
     portal-origins:
       - "${PORTAL_LANDING}"
       - "${PORTAL_DASHBOARD}"
