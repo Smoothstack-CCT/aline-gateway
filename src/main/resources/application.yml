@@ -36,6 +36,12 @@ app:
           - "@/accounts"
           - "@/accounts/{segment}"
           - "@/members/{segment}/accounts"
+      - id: "bank"
+        port: 8083
+        paths:
+          - "@/members"
+          - "/members"
+          - "@/branches"
     portal-origins:
       - "${PORTAL_LANDING}"
       - "${PORTAL_DASHBOARD}"
