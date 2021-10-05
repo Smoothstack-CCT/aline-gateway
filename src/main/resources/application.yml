@@ -42,6 +42,11 @@ app:
           - "@/members"
           - "/members"
           - "@/branches"
+          - "@/banks"
+          - "@/banks/routing"
+          - "@/banks/routing/{segment}"
+          - "@/banks/id"
+          - "@/banks/id/{segment}"
       - id: "transaction"
         port: 8073
         paths:
