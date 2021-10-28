@@ -40,7 +40,7 @@ app:
         port: 8083
         paths:
           - "@/members"
-          - "/members"
+          - "@/members/{segment}"
           - "@/branches"
           - "@/banks"
           - "@/banks/routing"
