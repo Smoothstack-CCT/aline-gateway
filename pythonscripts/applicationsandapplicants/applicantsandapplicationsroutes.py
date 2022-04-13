@@ -1,10 +1,11 @@
-
+""" sends data to the underwriter"""
 import requests
 import json
 from applicants import create_applicant_data
 
 
 def applicant_generator_api():
+    """ sends applicant data to underwriter"""
     URL_APPLICANT = "http://127.0.0.1:8080/api/applicants"
     applicant = create_applicant_data()
 
@@ -17,6 +18,8 @@ def applicant_generator_api():
 
 
 def application_generator_checking_and_savings_api():
+    """ creates new applicants and submits for applications"""
+    # checking and savings
     URL_APPLICATION = "http://127.0.0.1:8080/api/applications"
     existing_user = applicant_generator_api()
 
@@ -34,6 +37,8 @@ def application_generator_checking_and_savings_api():
 
 
 def application_generator_credit_card_api():
+    """ creates new applicants and submits for applications"""
+    # credit card
     URL_APPLICATION = "http://127.0.0.1:8080/api/applications"
     existing_user = applicant_generator_api()
 
