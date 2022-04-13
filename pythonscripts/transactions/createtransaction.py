@@ -1,28 +1,25 @@
-
+""" creates the transaction functions"""
 import random
 from faker import Faker
-from datetime import date
 
-
-
-amount_generator = random.randrange(20, 250)
 
 
 def merchant_generator():
+    """creates a fake merchant"""
     fake = Faker()
 
     mercchant_code = random.randrange(1, 99999)
     name = fake.company()
     description = "The all new Ford Taures, with enough seats to move your family from point A to Z while being the definition of style and comfort... It is a plug in hybrid..."
-    registeredAt = date.today()
 
     merchant = {"code": mercchant_code, "name": name,
-                "description": description, "registeredAt": registeredAt}
+                "description": description}
 
     return merchant
 
 
 def transaction_generator_deposit():
+    """creates a test deposit"""
     mercchant_code = random.randrange(5, 99999)
     description = "deposited"
     transaction_deposit = {"type": "DEPOSIT", "method": "ACH", "amount": 100000,
@@ -34,7 +31,7 @@ def transaction_generator_deposit():
 
 
 def transaction_generator_purchase():
-    
+    """creates a test transaction"""
     mercchant_code = random.randrange(1, 99999)
   
     description = "the all new Ford Taures... It is a plug in hybrid"
