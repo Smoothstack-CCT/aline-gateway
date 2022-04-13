@@ -1,3 +1,4 @@
+"""sends the data to the transactin microservice"""
 import requests
 import json
 
@@ -9,7 +10,7 @@ URL_TRANSFER = "http://127.0.0.1:8080/api/transactions/transfer"
 
 
 def create_deposit_transaction_api():
-
+    """sends transaction data through the api"""
     data = transaction_generator_deposit()
     json_data = json.dumps(data)
     post_transaction = requests.post(
@@ -22,7 +23,7 @@ def create_deposit_transaction_api():
 create_deposit_transaction_api()
 
 def create_payment_transaction_api():
-
+    """sends a payment through the api"""
     data = transaction_generator_purchase()
     json_data = json.dumps(data)
     post_transaction = requests.post(
@@ -31,7 +32,7 @@ def create_payment_transaction_api():
 
 
 def create_transfer_transaction_api():
-
+    """sends a transfer request through the api"""
     data = {'fromAccountNumber': "0011012156",
             "toAccountNumber": "0011017000", "amount": 2000, "memo": "testtransfer"}
     json_data = json.dumps(data)
@@ -41,7 +42,7 @@ def create_transfer_transaction_api():
 
 
 def create_withdrawal_transaction_api():
-
+    """sends a withdrawal request through the api"""
     data = {"type": "WITHDRAWAL", "method": "ATM", "amount": 250,
                            "merchantCode": "NONE", "merchantName": "No merchant",  "description": "Test Withdrawal", "accountNumber": "0011012156"}
     json_data = json.dumps(data)
@@ -50,7 +51,7 @@ def create_withdrawal_transaction_api():
     return post_transaction
 
 def create_refund_transaction_api():
-
+    """sends a refund request through the api"""
     data = {"type": "REFUND", "method": "APP", "amount": 100,
                            "merchantCode": "NONE", "merchantName": "No merchant",  "description": "Test Refund", "accountNumber": "0011012156"}
     json_data = json.dumps(data)
