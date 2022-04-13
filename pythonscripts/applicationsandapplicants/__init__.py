@@ -1,0 +1,1 @@
+from applicantsandapplicationsroutes import applicant_generator_api
