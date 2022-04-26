@@ -3,7 +3,9 @@ import json
 from userdata import create_user_data_admin
 from userdata import create_user_data_member
 
-URL = "http://127.0.0.1:8080/api/users/registration"
+URL = 'http://127.0.0.1:8080/api/'
+
+
 
 
 def create_admin_api():
@@ -14,12 +16,29 @@ def create_admin_api():
         url=URL, headers={'Content-Type': 'application/json'}, data=json_data)
     return post_user
 
+def log_in():
+    URL = f'{URL}users/registration'
+    data = create_admin_api()
+    data = data.json()
+    username = data['username']
+    login_info = {'username':username, 'password':'P@ssword1!'}
+    json_login = json.dumps(login_info)
+    
+
+    get_login = requests.post(
+        url=URL, headers={'Content-Type': 'application/json'}, data=json_login)
+
+    headers = get_login.headers
+    bear_token = headers['Authorization']
+
+    return bear_token
+  
+
+
 
 def create_member_api():
     data = create_user_data_member()
     json_data = json.dumps(data)
     post_user = requests.post(
-        url=URL, headers={'Content-Type': 'application/json',"Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUZXN0dXNlcm5hbWUiLCJhdXRob3JpdHkiOiJhZG1pbmlzdHJhdG9yIiwiaWF0IjoxNjUwOTM4MjIzLCJleHAiOjE2NTIxNDc4MjN9.mub5IO2Tx09dFP4w_ECAYjOiGWPw2eviKRPwLX6yOKI" }, data=json_data)
-
-    print(post_user)
+        url=f'{URL}users/registration', headers={'Content-Type': 'application/json','Authorization': log_in() }, data=json_data)
     return post_user
