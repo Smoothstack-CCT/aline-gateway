@@ -7,7 +7,7 @@ spring:
 
 app:
   gateway:
-    service-host: "http://localhost"
+    service-host: "http://172.23.0.1"
     path-prefix: "/api"
     routes:
       - id: "user"

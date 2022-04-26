@@ -23,7 +23,7 @@ def transaction_generator_deposit():
     mercchant_code = random.randrange(5, 99999)
     description = "deposited"
     transaction_deposit = {"type": "DEPOSIT", "method": "ACH", "amount": 100000,
-                           "merchantCode": mercchant_code, "merchantName": "test",  "description": description, "accountNumber": "0011012156" }
+                           "merchantCode": mercchant_code, "merchantName": "test",  "description": description, "accountNumber": "0011011575" }
 
     return transaction_deposit
 
@@ -39,7 +39,7 @@ def transaction_generator_purchase():
     
 
     transaction_deposit = {"type": "PAYMENT", "method": "DEBIT_CARD", "amount": 50,
-                           "merchantCode": mercchant_code, "merchantName": "testpayment",  "description": description, "accountNumber": "0011012156"}
+                           "merchantCode": mercchant_code, "merchantName": "testpay",  "description": description, "accountNumber": "0011011575"}
 
     return transaction_deposit
 

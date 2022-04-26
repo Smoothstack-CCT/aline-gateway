@@ -14,48 +14,49 @@ def create_deposit_transaction_api():
     data = transaction_generator_deposit()
     json_data = json.dumps(data)
     post_transaction = requests.post(
-        url=URL, headers={'Content-Type': 'application/json', "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VybmFtZWtldmluIiwiYXV0aG9yaXR5IjoiYWRtaW5pc3RyYXRvciIsImlhdCI6MTY0OTIxNzc0MSwiZXhwIjoxNjUwNDI3MzQxfQ.klj3DbSxFWcuhjsr6xXL0diYyBwAoGxDb5-IEP4dy9w"}, data=json_data)
-
-    print(post_transaction)
+        url=URL, headers={'Content-Type': 'application/json', "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUZXN0dXNlcm5hbWUiLCJhdXRob3JpdHkiOiJhZG1pbmlzdHJhdG9yIiwiaWF0IjoxNjUwOTM4MjIzLCJleHAiOjE2NTIxNDc4MjN9.mub5IO2Tx09dFP4w_ECAYjOiGWPw2eviKRPwLX6yOKI"}, data=json_data)
     return post_transaction
 
 
-create_deposit_transaction_api()
+
+
 
 def create_payment_transaction_api():
     """sends a payment through the api"""
     data = transaction_generator_purchase()
     json_data = json.dumps(data)
     post_transaction = requests.post(
-        url=URL, headers={'Content-Type': 'application/json', "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VybmFtZWtldmluIiwiYXV0aG9yaXR5IjoiYWRtaW5pc3RyYXRvciIsImlhdCI6MTY0OTIxNzc0MSwiZXhwIjoxNjUwNDI3MzQxfQ.klj3DbSxFWcuhjsr6xXL0diYyBwAoGxDb5-IEP4dy9w"}, data=json_data)
+        url=URL, headers={'Content-Type': 'application/json', "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUZXN0dXNlcm5hbWUiLCJhdXRob3JpdHkiOiJhZG1pbmlzdHJhdG9yIiwiaWF0IjoxNjUwOTM4MjIzLCJleHAiOjE2NTIxNDc4MjN9.mub5IO2Tx09dFP4w_ECAYjOiGWPw2eviKRPwLX6yOKI"}, data=json_data)
     return post_transaction
+
 
 
 def create_transfer_transaction_api():
     """sends a transfer request through the api"""
-    data = {'fromAccountNumber': "0011012156",
-            "toAccountNumber": "0011017000", "amount": 2000, "memo": "testtransfer"}
+    data = {'fromAccountNumber': "0011011575",
+            "toAccountNumber": "0011014221", "amount": 2000, "memo": "testtransfer"}
     json_data = json.dumps(data)
     post_transaction = requests.post(
-        url=URL_TRANSFER, headers={'Content-Type': 'application/json', "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VybmFtZWtldmluIiwiYXV0aG9yaXR5IjoiYWRtaW5pc3RyYXRvciIsImlhdCI6MTY0OTIxNzc0MSwiZXhwIjoxNjUwNDI3MzQxfQ.klj3DbSxFWcuhjsr6xXL0diYyBwAoGxDb5-IEP4dy9w"}, data=json_data)
+        url=URL_TRANSFER, headers={'Content-Type': 'application/json', "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUZXN0dXNlcm5hbWUiLCJhdXRob3JpdHkiOiJhZG1pbmlzdHJhdG9yIiwiaWF0IjoxNjUwOTM4MjIzLCJleHAiOjE2NTIxNDc4MjN9.mub5IO2Tx09dFP4w_ECAYjOiGWPw2eviKRPwLX6yOKI"}, data=json_data)
     return post_transaction
 
 
 def create_withdrawal_transaction_api():
     """sends a withdrawal request through the api"""
     data = {"type": "WITHDRAWAL", "method": "ATM", "amount": 250,
-                           "merchantCode": "NONE", "merchantName": "No merchant",  "description": "Test Withdrawal", "accountNumber": "0011012156"}
+            "merchantCode": "NONE", "merchantName": "No merchant",  "description": "Test Withdrawal", "accountNumber": "0011011575"}
     json_data = json.dumps(data)
     post_transaction = requests.post(
-        url=URL, headers={'Content-Type': 'application/json', "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VybmFtZWtldmluIiwiYXV0aG9yaXR5IjoiYWRtaW5pc3RyYXRvciIsImlhdCI6MTY0OTIxNzc0MSwiZXhwIjoxNjUwNDI3MzQxfQ.klj3DbSxFWcuhjsr6xXL0diYyBwAoGxDb5-IEP4dy9w"}, data=json_data)
+        url=URL, headers={'Content-Type': 'application/json', "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUZXN0dXNlcm5hbWUiLCJhdXRob3JpdHkiOiJhZG1pbmlzdHJhdG9yIiwiaWF0IjoxNjUwOTM4MjIzLCJleHAiOjE2NTIxNDc4MjN9.mub5IO2Tx09dFP4w_ECAYjOiGWPw2eviKRPwLX6yOKI"}, data=json_data)
     return post_transaction
+
 
 def create_refund_transaction_api():
     """sends a refund request through the api"""
     data = {"type": "REFUND", "method": "APP", "amount": 100,
-                           "merchantCode": "NONE", "merchantName": "No merchant",  "description": "Test Refund", "accountNumber": "0011012156"}
+            "merchantCode": "NONE", "merchantName": "No merchant",  "description": "Test Refund", "accountNumber": "0011011575"}
     json_data = json.dumps(data)
     post_transaction = requests.post(
-        url=URL, headers={'Content-Type': 'application/json', "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VybmFtZWtldmluIiwiYXV0aG9yaXR5IjoiYWRtaW5pc3RyYXRvciIsImlhdCI6MTY0OTIxNzc0MSwiZXhwIjoxNjUwNDI3MzQxfQ.klj3DbSxFWcuhjsr6xXL0diYyBwAoGxDb5-IEP4dy9w"}, data=json_data)
+        url=URL, headers={'Content-Type': 'application/json', "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUZXN0dXNlcm5hbWUiLCJhdXRob3JpdHkiOiJhZG1pbmlzdHJhdG9yIiwiaWF0IjoxNjUwOTM4MjIzLCJleHAiOjE2NTIxNDc4MjN9.mub5IO2Tx09dFP4w_ECAYjOiGWPw2eviKRPwLX6yOKI"}, data=json_data)
     return post_transaction
 

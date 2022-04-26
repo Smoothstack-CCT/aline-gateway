@@ -14,7 +14,7 @@ def banks_generator_api():
     jason_bank = json.dumps(bank)
 
     post_bank = requests.post(
-        url=URL_BANK, headers={'Content-Type': 'application/json', "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VybmFtZWtldmluIiwiYXV0aG9yaXR5IjoiYWRtaW5pc3RyYXRvciIsImlhdCI6MTY0OTEwMzQyOSwiZXhwIjoxNjUwMzEzMDI5fQ.Je7zHKIJSqns6nd_15TNZ4_iwMN4hbaM9-BAr5PXcCo"}, data=jason_bank)
+        url=URL_BANK, headers={'Content-Type': 'application/json', "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUZXN0dXNlcm5hbWUiLCJhdXRob3JpdHkiOiJhZG1pbmlzdHJhdG9yIiwiaWF0IjoxNjUwOTM4MjIzLCJleHAiOjE2NTIxNDc4MjN9.mub5IO2Tx09dFP4w_ECAYjOiGWPw2eviKRPwLX6yOKI"}, data=jason_bank)
 
     return post_bank
 
@@ -39,8 +39,7 @@ def branch_generator_api():
 
     branch_json = json.dumps(banks_info)
 
-    print(banks_info)
-    print(branch_json)
+ 
     post_branch = requests.post(
-        url=URL_BRANCH, headers={'Content-Type': 'application/json', "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VybmFtZWtldmluIiwiYXV0aG9yaXR5IjoiYWRtaW5pc3RyYXRvciIsImlhdCI6MTY0OTIxNzc0MSwiZXhwIjoxNjUwNDI3MzQxfQ.klj3DbSxFWcuhjsr6xXL0diYyBwAoGxDb5-IEP4dy9w"}, data=branch_json)
+        url=URL_BRANCH, headers={'Content-Type': 'application/json', "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUZXN0dXNlcm5hbWUiLCJhdXRob3JpdHkiOiJhZG1pbmlzdHJhdG9yIiwiaWF0IjoxNjUwOTM4MjIzLCJleHAiOjE2NTIxNDc4MjN9.mub5IO2Tx09dFP4w_ECAYjOiGWPw2eviKRPwLX6yOKI"}, data=branch_json)
     return post_branch

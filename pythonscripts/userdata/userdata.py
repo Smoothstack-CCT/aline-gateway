@@ -1,12 +1,12 @@
 """ creates user information to populate the database """
 
+
 import random
 from faker import Faker
-
 import sys
-sys.path.insert(
-    0, '/Users/kevinlyons/Documents/code/capstone/aline-gateway-KDL/pythonscripts/applicationsandapplicants')
-from applicantsandapplicationsroutes import application_generator_checking_and_savings_api
+import os
+
+
 
 def create_user_data_admin():
     """ profile creator function """
@@ -31,7 +31,10 @@ def create_user_data_admin():
 
 
 def create_user_data_member():
-    data = application_generator_checking_and_savings_api()
+    sys.path.insert(
+    0, '/Users/kevinlyons/Documents/code/capstone/aline-gateway-KDL/pythonscripts/')
+    from applicationsandapplicants import applicantsandapplicationsroutes
+    data = applicantsandapplicationsroutes.application_generator_checking_and_savings_api()
     data = data.json()
     print(data)
     created_members = data.get('createdMembers')
@@ -52,4 +55,3 @@ def create_user_data_member():
     return new_member
 
 
-create_user_data_member()

@@ -1,6 +1,10 @@
 """ sends data to the underwriter"""
 import requests
 import json
+import sys
+
+sys.path.insert(
+    0, '/Users/kevinlyons/Documents/code/capstone/aline-gateway-KDL/pythonscripts/applicationsandapplicants/')
 from applicants import create_applicant_data
 
 
@@ -12,9 +16,10 @@ def applicant_generator_api():
     applicant_json = json.dumps(applicant)
 
     post_applicant = requests.post(
-        url=URL_APPLICANT, headers={'Content-Type': 'application/json', "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VybmFtZWtldmluIiwiYXV0aG9yaXR5IjoiYWRtaW5pc3RyYXRvciIsImlhdCI6MTY0OTEwMzQyOSwiZXhwIjoxNjUwMzEzMDI5fQ.Je7zHKIJSqns6nd_15TNZ4_iwMN4hbaM9-BAr5PXcCo"}, data=applicant_json)
+        url=URL_APPLICANT, headers={'Content-Type': 'application/json', "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUZXN0dXNlcm5hbWUiLCJhdXRob3JpdHkiOiJhZG1pbmlzdHJhdG9yIiwiaWF0IjoxNjUwOTM4MjIzLCJleHAiOjE2NTIxNDc4MjN9.mub5IO2Tx09dFP4w_ECAYjOiGWPw2eviKRPwLX6yOKI"}, data=applicant_json)
 
     return post_applicant
+
 
 
 def application_generator_checking_and_savings_api():
@@ -31,9 +36,10 @@ def application_generator_checking_and_savings_api():
     application = json.dumps(application)
 
     post_application = requests.post(
-        url=URL_APPLICATION, headers={'Content-Type': 'application/json', "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VybmFtZWtldmluIiwiYXV0aG9yaXR5IjoiYWRtaW5pc3RyYXRvciIsImlhdCI6MTY0OTEwMzQyOSwiZXhwIjoxNjUwMzEzMDI5fQ.Je7zHKIJSqns6nd_15TNZ4_iwMN4hbaM9-BAr5PXcCo"}, data=application)
+        url=URL_APPLICATION, headers={'Content-Type': 'application/json', "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUZXN0dXNlcm5hbWUiLCJhdXRob3JpdHkiOiJhZG1pbmlzdHJhdG9yIiwiaWF0IjoxNjUwOTM4MjIzLCJleHAiOjE2NTIxNDc4MjN9.mub5IO2Tx09dFP4w_ECAYjOiGWPw2eviKRPwLX6yOKI"}, data=application)
 
     return post_application
+
 
 
 def application_generator_credit_card_api():
@@ -50,9 +56,7 @@ def application_generator_credit_card_api():
     application = json.dumps(application)
 
     post_application = requests.post(
-        url=URL_APPLICATION, headers={'Content-Type': 'application/json', "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VybmFtZWtldmluIiwiYXV0aG9yaXR5IjoiYWRtaW5pc3RyYXRvciIsImlhdCI6MTY0OTEwMzQyOSwiZXhwIjoxNjUwMzEzMDI5fQ.Je7zHKIJSqns6nd_15TNZ4_iwMN4hbaM9-BAr5PXcCo"}, data=application)
-   
+        url=URL_APPLICATION, headers={'Content-Type': 'application/json', "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUZXN0dXNlcm5hbWUiLCJhdXRob3JpdHkiOiJhZG1pbmlzdHJhdG9yIiwiaWF0IjoxNjUwOTM4MjIzLCJleHAiOjE2NTIxNDc4MjN9.mub5IO2Tx09dFP4w_ECAYjOiGWPw2eviKRPwLX6yOKI"}, data=application)
+
     return post_application
-
-
 
