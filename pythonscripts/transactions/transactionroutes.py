@@ -5,8 +5,10 @@ import json
 from createtransaction import transaction_generator_deposit
 from createtransaction import transaction_generator_purchase
 
-URL = "http://127.0.0.1:8080/api/transactions"
-URL_TRANSFER = "http://127.0.0.1:8080/api/transactions/transfer"
+from userdata import userdataroute
+
+URL = 'http://127.0.0.1:8080/api/'
+
 
 
 def create_deposit_transaction_api():
@@ -14,11 +16,8 @@ def create_deposit_transaction_api():
     data = transaction_generator_deposit()
     json_data = json.dumps(data)
     post_transaction = requests.post(
-        url=URL, headers={'Content-Type': 'application/json', "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUZXN0dXNlcm5hbWUiLCJhdXRob3JpdHkiOiJhZG1pbmlzdHJhdG9yIiwiaWF0IjoxNjUwOTM4MjIzLCJleHAiOjE2NTIxNDc4MjN9.mub5IO2Tx09dFP4w_ECAYjOiGWPw2eviKRPwLX6yOKI"}, data=json_data)
+        url=f'{URL}transactions', headers={'Content-Type': 'application/json', "Authorization": userdataroute.log_in()}, data=json_data)
     return post_transaction
-
-
-
 
 
 def create_payment_transaction_api():
@@ -26,7 +25,7 @@ def create_payment_transaction_api():
     data = transaction_generator_purchase()
     json_data = json.dumps(data)
     post_transaction = requests.post(
-        url=URL, headers={'Content-Type': 'application/json', "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUZXN0dXNlcm5hbWUiLCJhdXRob3JpdHkiOiJhZG1pbmlzdHJhdG9yIiwiaWF0IjoxNjUwOTM4MjIzLCJleHAiOjE2NTIxNDc4MjN9.mub5IO2Tx09dFP4w_ECAYjOiGWPw2eviKRPwLX6yOKI"}, data=json_data)
+        url=f'{URL}transactions', headers={'Content-Type': 'application/json', "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUZXN0dXNlcm5hbWUiLCJhdXRob3JpdHkiOiJhZG1pbmlzdHJhdG9yIiwiaWF0IjoxNjUwOTM4MjIzLCJleHAiOjE2NTIxNDc4MjN9.mub5IO2Tx09dFP4w_ECAYjOiGWPw2eviKRPwLX6yOKI"}, data=json_data)
     return post_transaction
 
 
@@ -37,7 +36,7 @@ def create_transfer_transaction_api():
             "toAccountNumber": "0011014221", "amount": 2000, "memo": "testtransfer"}
     json_data = json.dumps(data)
     post_transaction = requests.post(
-        url=URL_TRANSFER, headers={'Content-Type': 'application/json', "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUZXN0dXNlcm5hbWUiLCJhdXRob3JpdHkiOiJhZG1pbmlzdHJhdG9yIiwiaWF0IjoxNjUwOTM4MjIzLCJleHAiOjE2NTIxNDc4MjN9.mub5IO2Tx09dFP4w_ECAYjOiGWPw2eviKRPwLX6yOKI"}, data=json_data)
+        url=f'{URL}transactions/transfer', headers={'Content-Type': 'application/json', "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUZXN0dXNlcm5hbWUiLCJhdXRob3JpdHkiOiJhZG1pbmlzdHJhdG9yIiwiaWF0IjoxNjUwOTM4MjIzLCJleHAiOjE2NTIxNDc4MjN9.mub5IO2Tx09dFP4w_ECAYjOiGWPw2eviKRPwLX6yOKI"}, data=json_data)
     return post_transaction
 
 
@@ -47,7 +46,7 @@ def create_withdrawal_transaction_api():
             "merchantCode": "NONE", "merchantName": "No merchant",  "description": "Test Withdrawal", "accountNumber": "0011011575"}
     json_data = json.dumps(data)
     post_transaction = requests.post(
-        url=URL, headers={'Content-Type': 'application/json', "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUZXN0dXNlcm5hbWUiLCJhdXRob3JpdHkiOiJhZG1pbmlzdHJhdG9yIiwiaWF0IjoxNjUwOTM4MjIzLCJleHAiOjE2NTIxNDc4MjN9.mub5IO2Tx09dFP4w_ECAYjOiGWPw2eviKRPwLX6yOKI"}, data=json_data)
+        url=f'{URL}transactions', headers={'Content-Type': 'application/json', "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUZXN0dXNlcm5hbWUiLCJhdXRob3JpdHkiOiJhZG1pbmlzdHJhdG9yIiwiaWF0IjoxNjUwOTM4MjIzLCJleHAiOjE2NTIxNDc4MjN9.mub5IO2Tx09dFP4w_ECAYjOiGWPw2eviKRPwLX6yOKI"}, data=json_data)
     return post_transaction
 
 
@@ -57,6 +56,6 @@ def create_refund_transaction_api():
             "merchantCode": "NONE", "merchantName": "No merchant",  "description": "Test Refund", "accountNumber": "0011011575"}
     json_data = json.dumps(data)
     post_transaction = requests.post(
-        url=URL, headers={'Content-Type': 'application/json', "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUZXN0dXNlcm5hbWUiLCJhdXRob3JpdHkiOiJhZG1pbmlzdHJhdG9yIiwiaWF0IjoxNjUwOTM4MjIzLCJleHAiOjE2NTIxNDc4MjN9.mub5IO2Tx09dFP4w_ECAYjOiGWPw2eviKRPwLX6yOKI"}, data=json_data)
+        url=f'{URL}transactions', headers={'Content-Type': 'application/json', "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUZXN0dXNlcm5hbWUiLCJhdXRob3JpdHkiOiJhZG1pbmlzdHJhdG9yIiwiaWF0IjoxNjUwOTM4MjIzLCJleHAiOjE2NTIxNDc4MjN9.mub5IO2Tx09dFP4w_ECAYjOiGWPw2eviKRPwLX6yOKI"}, data=json_data)
     return post_transaction
 

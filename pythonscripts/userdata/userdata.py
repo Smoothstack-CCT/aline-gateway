@@ -1,12 +1,8 @@
 """ creates user information to populate the database """
-
-
 import random
 from faker import Faker
 import sys
 import os
-
-
 
 def create_user_data_admin():
     """ profile creator function """
@@ -18,20 +14,21 @@ def create_user_data_admin():
     first_name = fake.first_name()
     last_name = fake.last_name()
 
-    full_name = first_name+"."+last_name
-    email = full_name + "@gmail.com"
+    full_name = f'{first_name}.{last_name}'
+    email =f'{full_name}@gmail.com'
 
-    password = "P@ssword1!"
-    phone = "{}-{}-{}".format(three_digit, three_digit, four_digit)
+    password = 'P@ssword1!'
+    phone = f'{three_digit}-{three_digit}-{four_digit}'
 
-    admin = {"role": "admin", "firstName": first_name, "lastName": last_name, "username": full_name,
-             "email": email, "password": password, "phone": phone, "enabled": 1}
+    admin = {'role': 'admin', 'firstName': first_name, 'lastName': last_name, 'username': full_name,
+             'email': email, 'password': password, 'phone': phone, 'enabled': 1}
 
     return admin
 
 
 
 def create_user_data_member():
+    """creates a member """
     sys.path.insert(
     0, '/Users/kevinlyons/Documents/code/capstone/aline-gateway-KDL/pythonscripts/')
     from applicationsandapplicants import applicantsandapplicationsroutes
@@ -50,8 +47,8 @@ def create_user_data_member():
 
     last_four_ssn = social_security[2]
 
-    new_member = {"role": "member", "username": username, "password": "P@ssword1!",
-                  "membershipId": membership_id, "lastFourOfSSN": last_four_ssn}
+    new_member = {'role': 'member', 'username': username, 'password': 'P@ssword1!',
+                  'membershipId': membership_id, 'lastFourOfSSN': last_four_ssn}
 
     return new_member
 

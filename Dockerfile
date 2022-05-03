@@ -1,7 +1,3 @@
-FROM openjdk:11
-
-ENV APP_SERVICE_HOST="host.docker.internal"
-
-COPY target/aline-gateway-0.0.1-SNAPSHOT.jar aline-gateway-.0.0.1-SNAPSHOT.jar 
-
-ENTRYPOINT [ "java", "-jar", "aline-gateway-.0.0.1-SNAPSHOT.jar" ]
+FROM openjdk@sha256:ec2ac33dcbd1f392a6594765f55f64272a8c7353b2748872c933d56ae5f66ed6
+COPY target/aline-gateway-*.jar app.jar
+ENTRYPOINT [ "java", "-jar", "app.jar" ]
