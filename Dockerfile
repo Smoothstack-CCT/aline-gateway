@@ -1,3 +1,3 @@
-FROM openjdk@sha256:ec2ac33dcbd1f392a6594765f55f64272a8c7353b2748872c933d56ae5f66ed6
+FROM openjdk@sha256:77a5473ddb0c020e1ed7613a3454bb7106ca546e4eac3fab3dab411e288ba8d3
 COPY target/aline-gateway-*.jar app.jar
 ENTRYPOINT [ "java", "-jar", "app.jar" ]

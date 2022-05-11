@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: transaction
+  labels:
+    app: transaction
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: transaction
+  template:
+    metadata:
+      labels:
+        app: transaction
+
+    spec:
+      containers:
+        - name: transaction
+          image: laxwalrus/capstone-transaction:v1
+          ports:
+            - containerPort: 8073
+          env:
+            - name: TRANSACTION_PORT
+              value: "8073"
+            - name: DATABASE_NAME
+              value: "cirrusdb"
+            - name: DBPORT
+              value: "3306"
+            - name: JWT_SECRET_KEY
+              value: "eyJhbGciOiJIUzI1NiJ95eyJSb2xlIjoiQWRtaW4iLC"
+            - name: MYSQLDB
+              value: "admin"
+            - name: MYSQLDB_PASSWORD
+              value: "Password"
+            - name: SECRET_KEY
+              value: ThisIsAGreatSecretKey!!!
+            - name: DBNAME
+              value: alinedb

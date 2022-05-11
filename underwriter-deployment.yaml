@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: underwriter
+  labels:
+    app: underwriter
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: underwriter
+  template:
+    metadata:
+      labels:
+        app: underwriter
+
+    spec:
+      containers:
+        - name: transaction
+          image: laxwalrus/capstone-underwriter:v1
+          ports:
+            - containerPort: 8071
+          env:
+            - name: UNDERWRITER_PORT
+              value: "8071"
+            - name: DATABASE_NAME
+              value: "cirrusdb"
+            - name: DBPORT
+              value: "3306"
+            - name: JWT_SECRET_KEY
+              value: "eyJhbGciOiJIUzI1NiJ95eyJSb2xlIjoiQWRtaW4iLC"
+            - name: MYSQLDB
+              value: "admin"
+            - name: MYSQLDB_PASSWORD
+              value: "Password"
+            - name: SECRET_KEY
+              value: "ThisIsAGreatSecretKey!!!"
+            - name: DBNAME
+              value: "alinedb"

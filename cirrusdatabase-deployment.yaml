@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cirrusdb
+  labels:
+    app: cirrusdb
+    tier: database
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cirrusdb
+      tier: database
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: cirrusdb
+        tier: database
+    spec:
+      containers:
+        - name: cirrusdb
+          image: arm64v8/mysql:oracle
+          ports:
+            - containerPort: 3306
+              name: cirrusdb
+
+          env:
+            - name: MYSQL_PASSWORD
+              value: Password
+            - name: MYSQL_ROOT_PASSWORD
+              value: Password
+            - name: MYSQL_USER
+              value: admin
+            - name: MYSQL_DATABASE
+              value: alinedb
+
+          volumeMounts:
+            - mountPath: /usr/local/mysql
+              name: cirrusdb-persitance-storage
+
+      volumes:
+        - name: cirrusdb-persitance-storage
+          persistentVolumeClaim:
+            claimName: cirrusdb-pv-claim

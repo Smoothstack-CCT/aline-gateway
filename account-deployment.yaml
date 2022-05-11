@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: account
+  labels:
+    app: account
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: account
+  template:
+    metadata:
+      labels:
+        app: account
+
+    spec:
+      containers:
+        - name: account
+          image: laxwalrus/capstone-account
+          ports:
+            - containerPort: 8072
+          env:
+            - name: ACCOUNT_PORT
+              value: "8072"
+            - name: DATABASE_NAME
+              value: "cirrusdb"
+            - name: DBPORT
+              value: "3306"
+            - name: JWT_SECRET_KEY
+              value: "eyJhbGciOiJIUzI1NiJ95eyJSb2xlIjoiQWRtaW4iLC"
+            - name: MYSQLDB
+              value: "admin"
+            - name: MYSQLDB_PASSWORD
+              value: "Password"
+            - name: SECRET_KEY
+              value: "ThisIsAGreatSecretKey!!!"
+            - name: MYSQLDB_DATABASE
+              value: "alinedb"
