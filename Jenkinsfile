@@ -11,7 +11,6 @@ pipeline {
             bat "mvn -Dmaven.test.failure.ignore=true clean package"
             }
         }
-        
         stage('Archive') {
             steps {
             archiveArtifacts artifacts: 'target/*.jar', followSymlinks: false
