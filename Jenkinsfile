@@ -18,7 +18,7 @@ pipeline {
 
         stage("Build Docker"){
             steps{
-                bat "docker build -t laxwalrus/capstone-gateway:latest ."
+                bat "docker build -t laxwalrus/capstone-gateway:$BUILD_NUMBER ."
 
             }            
         }
