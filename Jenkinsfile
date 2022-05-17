@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-            bat "mvn clean package -DskipTests"
+            bat "mvn -Dmaven.test.failure.ignore=true clean package"
             }
         }
         stage('Archive') {
