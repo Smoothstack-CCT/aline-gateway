@@ -11,20 +11,23 @@ pipeline {
     }
 
     stages {
-        stage('Build') {
+        stage("Build MVN") {
             steps {
-            bat "mvn -Dmaven.test.failure.ignore=true clean package"
+                bat "mvn -Dmaven.test.failure.ignore=true clean package"
             }
+        }
 
+
+        stage("Build Docker"){
             steps{
                 script {
                     dockerImage = docker.build registry + ":$BUILD_NUMBER"
                 }
 
-            }
+            }            
         }
 
-        stage("Deploy"){
+        stage("Deploy Docker"){
             steps{
                 script{
                     docker.withRegistry("",registryCredential){
@@ -33,7 +36,6 @@ pipeline {
                 }
             }
         }
-
 
         stage("Cleaning"){
             steps{
@@ -47,7 +49,5 @@ pipeline {
             }
 
         }
-           
-        
     }
 }
