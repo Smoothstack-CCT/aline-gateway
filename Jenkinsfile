@@ -1,8 +1,6 @@
 pipeline {
     environment {
-        registry = "laxwalrus/capstone-gateway"
-        registryCredential = "laxwalrus"\
-        dockerImage = ""
+        DOCKERHUB_CREDENTIALS=credentials("Dockerhub")
     }
     agent any
 
@@ -20,26 +18,29 @@ pipeline {
 
         stage("Build Docker"){
             steps{
-                script {
-                    dockerImage = docker.Build registry + ":$BUILD_NUMBER"
-                }
+                bat "docker build -t laxwalrus/capstone-gateway:latest ."
 
             }            
         }
 
-        stage("Deploy Docker"){
+
+        stage("login to docker"){
             steps{
-                script{
-                    docker.withRegistry("",registryCredential){
-                        dockerImage.push()
-                    }
-                }
+                bat "echo $DOCKERHUB_CREDENTIALS_PSW| docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin"
             }
         }
 
+        stage("Deploy Docker"){
+            steps{
+                bat "docker push laxwalrus/capstone-gateway:latest"
+            }
+        }
+            
+
+
         stage("Cleaning"){
             steps{
-                bat "docker rmi $registry:$BUILD_NUMBER"
+                bat "docker logout"
             }
         }
         
