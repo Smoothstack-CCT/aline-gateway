@@ -32,7 +32,7 @@ pipeline {
 
         stage("Deploy Docker"){
             steps{
-                bat "docker push laxwalrus/capstone-gateway:latest"
+                bat "docker push laxwalrus/capstone-gateway:$BUILD_NUMBER"
             }
         }
             
