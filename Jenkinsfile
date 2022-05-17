@@ -1,5 +1,5 @@
 pipeline {
-    enviroment {
+    environment {
         registry = "laxwalrus/capstone-gateway"
         registryCredential = "laxwalrus"\
         dockerImage = ""
