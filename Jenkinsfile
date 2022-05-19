@@ -9,14 +9,12 @@ pipeline {
     }
 
     stages {
-
-        stage("Sonarqube tests"){
-            steps{
-                def scanner = 'SonarScanner 4.0';
-                withSonarQubeEnv('Sonarqube')
-                bat "${scannerHome}bin/sonar-scanner"
-            }
-        }
+        stage('SonarQube Analysis') {
+            def mvn = tool 'Default Maven';
+            withSonarQubeEnv() {
+            bat "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=Sonarqube-gateway"
+    }
+  }
 
 
         stage("Build MVN") {
