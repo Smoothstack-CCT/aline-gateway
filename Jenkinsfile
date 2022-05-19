@@ -9,6 +9,16 @@ pipeline {
     }
 
     stages {
+
+        stage("Sonarqube tests"){
+            steps{
+                def scanner = 'SonarScanner 4.0';
+                withSonarQubeEnv('Sonarqube')
+                bat "${scannerHome}bin/sonar-scanner"
+            }
+        }
+
+
         stage("Build MVN") {
             steps {
                 bat "mvn -Dmaven.test.failure.ignore=true clean package"
